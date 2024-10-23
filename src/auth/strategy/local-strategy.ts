@@ -15,5 +15,10 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
 
     async validate(username: string, password: string): Promise<any> {
         // Implementar aqui a lógica de autenticação
+        if (username === 'admin' && password === 'admin') {
+            return { username, password };
+        } else {
+            throw new UnauthorizedException('Usuário ou senha inválidos');
+        }
     }
 }
